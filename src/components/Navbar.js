@@ -36,6 +36,7 @@ export default function Navbar({ theme }) {
           name="people-outline"
           size={32}
           color={theme === "light" ? "white" : "black"}
+          onPress={() => navigation.navigate("Profiles")}
         />
       </View>
     </View>

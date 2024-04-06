@@ -6,6 +6,7 @@ import {
   Image,
   SafeAreaView,
   Platform,
+  ScrollView,
   Button,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -15,6 +16,9 @@ import monochromeMapStyle from "../../monochrome-map-style";
 import { useNavigation } from "@react-navigation/native";
 import { useColorScheme } from "nativewind";
 import strangerThingsMapStyle from "../../stranger-things-map-style";
+import LottieView from "lottie-react-native";
+import * as utils from "../../utils";
+import { ChargingStation } from "./ChargingStation";
 
 // sample lat long for destination 1.3959774, 103.8887643
 // sample lat long for destination 1.396871, 103.9076603
@@ -65,22 +69,22 @@ export default function Maps() {
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
       fetchRoute();
-      //   let newMarkers = [];
+      let newMarkers = [];
 
-      //   for (let i = 0; i < 10; i++) {
-      //     const nearbyCoordinates = utils.generateNearbyCoordinates(
-      //       destinationCoords,
-      //       8
-      //     ); // You can adjust the distance here
-      //     const marker = {
-      //       coordinate: nearbyCoordinates,
-      //       title: "Nearby Charging Station",
-      //       description: "Charging station available here",
-      //     };
-      //     newMarkers.push(marker); // Push the new marker to the new array
+      for (let i = 0; i < 10; i++) {
+        const nearbyCoordinates = utils.generateNearbyCoordinates(
+          destinationCoords,
+          8
+        ); // You can adjust the distance here
+        const marker = {
+          coordinate: nearbyCoordinates,
+          title: "Nearby Charging Station",
+          description: "Charging station available here",
+        };
+        newMarkers.push(marker); // Push the new marker to the new array
 
-      //     setMarkers(() => newMarkers);
-      //   }
+        setMarkers(() => newMarkers);
+      }
     })();
   }, []);
 
@@ -97,7 +101,17 @@ export default function Maps() {
       <View className="h-3/5">
         <View className="flex flex-col">
           {text === "Waiting.." ? (
-            <Text>Waiting for location</Text>
+            <View className="w-full h-full">
+              <LottieView
+                autoPlay
+                style={{
+                  backgroundColor: colorScheme === "light" ? "#eee" : "#10171d",
+                }}
+                className="w-full h-full"
+                // Find more Lottie files at https://lottiefiles.com/featured
+                source={require("../../assets/loading.json")}
+              />
+            </View>
           ) : (
             <MapView
               provider={PROVIDER_GOOGLE}
@@ -145,23 +159,23 @@ export default function Maps() {
                 />
               </Marker>
 
-              {/* {markers.map((marker, index) => (
-              <Marker
-                key={index}
-                coordinate={{
-                  latitude: marker.coordinate.latitude,
-                  longitude: marker.coordinate.longitude,
-                }}
-                title={marker.title}
-                description={marker.description}
-              >
-                <Image
-                  source={require("../../assets/charging-station-two.png")}
-                  className="w-12 h-12"
-                  resizeMode="contain"
-                />
-              </Marker>
-            ))} */}
+              {markers.map((marker, index) => (
+                <Marker
+                  key={index}
+                  coordinate={{
+                    latitude: marker.coordinate.latitude,
+                    longitude: marker.coordinate.longitude,
+                  }}
+                  title={marker.title}
+                  description={marker.description}
+                >
+                  <Image
+                    source={require("../../assets/charging-station-two.png")}
+                    className="w-12 h-12"
+                    resizeMode="contain"
+                  />
+                </Marker>
+              ))}
               {/* Polyline for the path */}
               <Polyline
                 coordinates={routeCoordinates}
@@ -174,85 +188,11 @@ export default function Maps() {
         </View>
       </View>
       {/*Energy station details */}
-      <View className="p-10">
-        <View className="flex flex-row gap-4">
-          <Image
-            source={require("../../assets/charging-station.png")}
-            className="w-20 h-20"
-          />
-          <View className="flex flex-col">
-            <View className="flex flex-row">
-              <Text className="text-xl dark:text-white font-semibold">
-                Energy station details
-              </Text>
-              <Text
-                className="text-black dark:text-white"
-                onPress={toggleColorScheme}
-              >
-                Dark Mode
-              </Text>
-            </View>
-            <View className="flex flex-row gap-2  mt-0.5">
-              <Ionicons name="star" size={20} color="orange" />
-              <Text className="text-sm text-gray-500">4.8 (172)</Text>
-            </View>
-            <View className="flex flex-row gap-2 mt-0.5">
-              <View className="bg-green-300 dark:bg-indigo-300 rounded-xl px-2">
-                <Text>2 / 8</Text>
-              </View>
-              <Text className="text-sm text-green-600   dark:text-indigo-300 font-semibold">
-                Ports Available
-              </Text>
-            </View>
-          </View>
-        </View>
+      <ScrollView horizontal>
+        <ChargingStation colorScheme={colorScheme} />
+        <ChargingStation colorScheme={colorScheme} />
+      </ScrollView>
 
-        {/*Energy station Overview and Reviews */}
-        <View className="mt-6">
-          <View className="flex flex-row gap-2">
-            <Text className="text-lg font-semibold dark:text-white ">
-              Overview
-            </Text>
-            <Text className="text-lg text-gray-400 dark:text-white">
-              Reviews
-            </Text>
-          </View>
-          {/*Energy station address 1 */}
-          <View className="flex flex-row gap-4 mt-0.5">
-            <Ionicons
-              name="location"
-              size={20}
-              color={colorScheme === "light" ? "black" : "white"}
-            />
-            <Text className="text-sm text-gray-400 dark:text-white">
-              Golden Lane, London EC1Y ORN, UK
-            </Text>
-          </View>
-          <View className="w-full h-0.5 my-2 bg-gray-100"></View>
-          <View className="flex flex-row gap-4">
-            <Ionicons
-              name="time"
-              size={20}
-              color={colorScheme === "light" ? "black" : "white"}
-            />
-            <Text className="text-sm text-gray-400">Open 24 Hours</Text>
-          </View>
-        </View>
-        {/*Reservation and Go Now buttons */}
-        <View className="flex flex-row gap-4 mt-6">
-          <Button
-            title="Reserve Now"
-            className="flex flex-col bg-green-300 dark:bg-indigo-700 p-4 rounded-lg w-1/2"
-            onPress={() => navigation.navigate("Capacity")}
-          />
-          {/* <Text className="text-white text-center font-semibold">
-              Reserve Now
-            </Text> */}
-          <View className="flex flex-col bg-blue-300 dark:bg-[#7601ff] p-4 rounded-lg w-1/2">
-            <Text className="text-white text-center font-semibold">Go Now</Text>
-          </View>
-        </View>
-      </View>
       {/* <Navbar /> */}
     </View>
   );
