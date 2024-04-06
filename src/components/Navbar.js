@@ -8,7 +8,7 @@ export default function Navbar({ theme }) {
 
   return (
     // bg-[#1c2029]
-    <View className="flex flex-row justify-between items-center mt-auto mb-6 p-5 mx-6 bg-gray-400 dark:bg-gray-300 rounded-3xl">
+    <View className="flex flex-row justify-between items-center mt-auto mb-6 p-5 mx-6 bg-gray-400 dark:bg-gray-3'00 rounded-3xl">
       <View className="flex flex-col">
         <Ionicons
           name="settings"
@@ -38,6 +38,14 @@ export default function Navbar({ theme }) {
           size={32}
           color={theme === "light" ? "white" : "black"}
           onPress={() => navigation.navigate("Profiles")}
+        />
+      </View>
+      <View className="flex flex-col">
+        <Ionicons
+          name="flower-outline"
+          size={32}
+          color={theme === "light" ? "white" : "black"}
+          onPress={() => navigation.navigate("Chatbot")}
         />
       </View>
     </View>

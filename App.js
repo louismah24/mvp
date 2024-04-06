@@ -9,6 +9,7 @@ import Capacity from "./src/components/Capacity";
 import Payment from "./src/components/Payment";
 import { SmartAppliance } from "./src/components/SmartAppliance";
 import { Profiles } from "./src/components/Profiles";
+import Chatbot from "./src/components/Chatbot";
 
 export function HomeScreen() {
   const { colorScheme, toggleColorScheme } = useColorScheme();
@@ -110,6 +111,7 @@ export default function App() {
         <Stack.Screen name="Payment" component={Payment} />
         <Stack.Screen name="SmartAppliance" component={SmartAppliance} />
         <Stack.Screen name="Profiles" component={Profiles} />
+        <Stack.Screen name="Chatbot" component={Chatbot} />
       </Stack.Navigator>
     </NavigationContainer>
   );
