@@ -93,7 +93,7 @@ export default function Maps() {
   }
 
   return (
-    <View className="bg-[#fcfcfc] dark:bg-black w-full h-full">
+    <View className="bg-[#fcfcfc] dark:bg-[#10171d] w-full h-full">
       <View className="h-3/5">
         <View className="flex flex-col">
           {text === "Waiting.." ? (
@@ -219,14 +219,22 @@ export default function Maps() {
           </View>
           {/*Energy station address 1 */}
           <View className="flex flex-row gap-4 mt-0.5">
-            <Ionicons name="location" size={20} color="black" />
+            <Ionicons
+              name="location"
+              size={20}
+              color={colorScheme === "light" ? "black" : "white"}
+            />
             <Text className="text-sm text-gray-400 dark:text-white">
               Golden Lane, London EC1Y ORN, UK
             </Text>
           </View>
           <View className="w-full h-0.5 my-2 bg-gray-100"></View>
           <View className="flex flex-row gap-4">
-            <Ionicons name="time" size={20} color="black" />
+            <Ionicons
+              name="time"
+              size={20}
+              color={colorScheme === "light" ? "black" : "white"}
+            />
             <Text className="text-sm text-gray-400">Open 24 Hours</Text>
           </View>
         </View>
@@ -240,7 +248,7 @@ export default function Maps() {
           {/* <Text className="text-white text-center font-semibold">
               Reserve Now
             </Text> */}
-          <View className="flex flex-col bg-blue-300 dark:bg-indigo-700 p-4 rounded-lg w-1/2">
+          <View className="flex flex-col bg-blue-300 dark:bg-[#7601ff] p-4 rounded-lg w-1/2">
             <Text className="text-white text-center font-semibold">Go Now</Text>
           </View>
         </View>

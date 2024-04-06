@@ -11,7 +11,7 @@ export function HomeScreen() {
   const { colorScheme, toggleColorScheme } = useColorScheme();
 
   return (
-    <View className="bg-[#fcfcfc] dark:bg-black w-full h-full pt-10">
+    <View className="bg-[#fcfcfc] dark:bg-[#10171d] w-full h-full pt-10">
       {/* Add a image using Image react native and add some text over it using tailwindcss*/}
       <View className="flex flex-row relative">
         <Image
@@ -39,21 +39,21 @@ export function HomeScreen() {
       </View>
       {/* Charging left and  distance travelled right */}
       <View className="flex flex-row justify-center items-center">
-        <View className="flex flex-col bg-green-300 dark:bg-indigo-300 h-auto p-6 rounded-2xl">
-          <Text className="text-[#919191] dark:text:white text-md mb-2">
+        <View className="flex flex-col bg-green-300 dark:bg-[#7601ff] h-auto p-6 rounded-2xl">
+          <Text className="text-[#919191] dark:text-white text-md mb-2">
             Battery energy
           </Text>
-          <Text className="text-black dark:text:white text-5xl font-extrabold">
+          <Text className="text-black dark:text-white text-5xl font-extrabold">
             72 %
           </Text>
 
-          <Text className="text-black  dark:text:white text-sm font-semibold">
+          <Text className="text-black  dark:text-white text-sm font-semibold">
             Power saving mode
           </Text>
         </View>
 
         <View className="flex flex-col ml-6  border-2 border-gray-300 h-auto p-6 rounded-2xl">
-          <Text className="text-[#919191] dark:text:white text-md mb-2">
+          <Text className="text-[#919191] dark:text-white text-md mb-2">
             {" "}
             Distance remaining
           </Text>
@@ -86,7 +86,7 @@ export function HomeScreen() {
         </View>
       </View>
       {/* Black Navbar with 3 icons */}
-      <Navbar />
+      <Navbar theme={colorScheme} />
     </View>
   );
 }
