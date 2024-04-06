@@ -30,6 +30,8 @@ export default function Maps() {
 
   const [location, setLocation] = useState(null);
 
+  const [toLocation, setToLocation] = useState({});
+
   const [errorMsg, setErrorMsg] = useState(null);
   const [routeCoordinates, setRouteCoordinates] = useState([]);
   const [markers, setMarkers] = useState([]);
@@ -37,9 +39,12 @@ export default function Maps() {
 
   const fetchRoute = async () => {
     try {
+      console.log("one", location.coords.latitude);
+      console.log("two", location.coords.longitude);
+
       // Make a request to MapBox Directions API
       const response = await fetch(
-        `https://api.mapbox.com/directions/v5/mapbox/driving/103.8999889%2C1.3959774%3B103.8455845%2C1.3690077?alternatives=true&geometries=geojson&language=en&overview=full&steps=true&access_token=pk.eyJ1IjoiYWltaW5kcyIsImEiOiJjbHVjbDVoc3gwdjNrMnNxbndia2syaDdxIn0.3JmCVnra1GuqKs-_d6oa7A`
+        `https://api.mapbox.com/directions/v5/mapbox/driving/${location.coords.longitude}%2C${location.coords.latitude}%3B${toLocation.longitude}%2C${toLocation.latitude}?alternatives=true&geometries=geojson&language=en&overview=full&steps=true&access_token=pk.eyJ1IjoiYWltaW5kcyIsImEiOiJjbHVjbDVoc3gwdjNrMnNxbndia2syaDdxIn0.3JmCVnra1GuqKs-_d6oa7A`
       );
       const data = await response.json();
 
@@ -52,10 +57,17 @@ export default function Maps() {
       }));
 
       // Set the route coordinates state
-      setRouteCoordinates(coordinates);
+      setRouteCoordinates(() => coordinates);
     } catch (error) {
       console.error("Error fetching route:", error);
     }
+  };
+
+  const newLocation = (newLocation) => {
+    console.log("newLocation");
+    setToLocation(() => newLocation);
+    console.log("location", toLocation);
+    fetchRoute();
   };
 
   useEffect(() => {
@@ -68,7 +80,7 @@ export default function Maps() {
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
-      fetchRoute();
+      //   fetchRoute();
       let newMarkers = [];
 
       for (let i = 0; i < 10; i++) {
@@ -146,8 +158,8 @@ export default function Maps() {
               </Marker>
               <Marker
                 coordinate={{
-                  latitude: 1.3690077,
-                  longitude: 103.8455845,
+                  latitude: 1.4344106,
+                  longitude: 103.7893678,
                 }}
                 title="Nearby Charging Station"
                 description="Charging station available here"
@@ -159,28 +171,26 @@ export default function Maps() {
                 />
               </Marker>
 
-              {markers.map((marker, index) => (
-                <Marker
-                  key={index}
-                  coordinate={{
-                    latitude: marker.coordinate.latitude,
-                    longitude: marker.coordinate.longitude,
-                  }}
-                  title={marker.title}
-                  description={marker.description}
-                >
-                  <Image
-                    source={require("../../assets/charging-station-two.png")}
-                    className="w-12 h-12"
-                    resizeMode="contain"
-                  />
-                </Marker>
-              ))}
+              <Marker
+                coordinate={{
+                  latitude: 1.3267547,
+                  longitude: 103.9281156,
+                }}
+                title="Nearby Charging Station"
+                description="Charging station available here"
+              >
+                <Image
+                  source={require("../../assets/charging-station-two.png")}
+                  className="w-12 h-12"
+                  resizeMode="contain"
+                />
+              </Marker>
+
               {/* Polyline for the path */}
               <Polyline
                 coordinates={routeCoordinates}
                 strokeWidth={4}
-                strokeColor="#39b6c5"
+                strokeColor={colorScheme == "light" ? "#39b6c5" : "#7601ff"}
                 geodesic={true}
               />
             </MapView>
@@ -188,10 +198,7 @@ export default function Maps() {
         </View>
       </View>
       {/*Energy station details */}
-      <ScrollView horizontal>
-        <ChargingStation colorScheme={colorScheme} />
-        <ChargingStation colorScheme={colorScheme} />
-      </ScrollView>
+      <ChargingStation colorScheme={colorScheme} newLocation={newLocation} />
 
       {/* <Navbar /> */}
     </View>
