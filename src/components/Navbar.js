@@ -28,6 +28,7 @@ export default function Navbar({ theme }) {
           name="battery-charging"
           size={32}
           color={theme === "light" ? "white" : "black"}
+          onPress={() => navigation.navigate("SmartAppliance")}
         />
       </View>
       <View className="flex flex-col">
