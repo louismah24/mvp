@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import { styled, useColorScheme } from "nativewind";
 
 export default function Navbar() {
   const navigation = useNavigation();

@@ -1,11 +1,16 @@
 import { Text, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useColorScheme } from "nativewind";
+
 import Navbar from "./src/components/Navbar";
+import Maps from "./src/components/Maps";
 
 export function HomeScreen() {
+  const { colorScheme, toggleColorScheme } = useColorScheme();
+
   return (
-    <View className="bg-[#fcfcfc] w-full h-full pt-10">
+    <View className="bg-[#fcfcfc] dark:bg-black w-full h-full pt-10">
       {/* Add a image using Image react native and add some text over it using tailwindcss*/}
       <View className="flex flex-row relative">
         <Image
@@ -14,8 +19,18 @@ export function HomeScreen() {
         />
         <View className="flex flex-row absolute top-10 left-5 justify-center items-center">
           <View className="flex flex-col">
-            <Text className="text-black text-4xl font-semibold">Model 3</Text>
-            <Text className="text-[#919191] text-lg font-semibold">
+            <View className="flex flex-row">
+              <Text className="text-black dark:text-white text-4xl font-semibold">
+                Model 3
+              </Text>
+              <Text
+                onPress={toggleColorScheme}
+                className="text-black dark:text-white"
+              >
+                Dark Mode
+              </Text>
+            </View>
+            <Text className="text-[#919191] dark:text:white text-lg font-semibold">
               Tesla, 2018
             </Text>
           </View>
@@ -23,33 +38,43 @@ export function HomeScreen() {
       </View>
       {/* Charging left and  distance travelled right */}
       <View className="flex flex-row justify-center items-center">
-        <View className="flex flex-col bg-green-300 h-auto p-6 rounded-2xl">
-          <Text className="text-[#919191] text-md mb-2">Battery energy</Text>
-          <Text className="text-black text-5xl font-extrabold">72 %</Text>
+        <View className="flex flex-col bg-green-300 dark:bg-indigo-300 h-auto p-6 rounded-2xl">
+          <Text className="text-[#919191] dark:text:white text-md mb-2">
+            Battery energy
+          </Text>
+          <Text className="text-black dark:text:white text-5xl font-extrabold">
+            72 %
+          </Text>
 
-          <Text className="text-black text-sm font-semibold">
+          <Text className="text-black  dark:text:white text-sm font-semibold">
             Power saving mode
           </Text>
         </View>
 
         <View className="flex flex-col ml-6  border-2 border-gray-300 h-auto p-6 rounded-2xl">
-          <Text className="text-[#919191] text-md mb-2">
+          <Text className="text-[#919191] dark:text:white text-md mb-2">
             {" "}
             Distance remaining
           </Text>
-          <Text className="text-black text-5xl font-extrabold">68km</Text>
-          <Text className="text-black text-sm font-semibold">~ 1h 20m</Text>
+          <Text className="text-black dark:text-white text-5xl font-extrabold">
+            68km
+          </Text>
+          <Text className="text-black dark:text-white text-sm font-semibold">
+            ~ 1h 20m
+          </Text>
         </View>
       </View>
       {/* Charging port banner with text */}
       <View className="flex flex-row justify-center items-center mt-6 p-6">
         <View className="flex flex-row bg-[#f2f2f2]  w-full h-auto p-6 rounded-2xl">
           <View className="flex flex-col">
-            <Text className="text-[#919191] text-md mb-2">Charging port</Text>
-            <Text className="text-black text-2xl font-extrabold">
+            <Text className="text-[#919191] dark:text:white text-md mb-2">
+              Charging port
+            </Text>
+            <Text className="text-black dark:text:white text-2xl font-extrabold">
               Type 1 - J1772{" "}
             </Text>
-            <Text className="text-black text-sm font-semibold">
+            <Text className="text-black dark:text:white text-sm font-semibold">
               AC N.America 19.2 kw
             </Text>
           </View>
@@ -76,6 +101,7 @@ export default function App() {
         }}
       >
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Maps" component={Maps} />
       </Stack.Navigator>
     </NavigationContainer>
   );
