@@ -18,12 +18,16 @@ export default function Capacity() {
   const navigation = useNavigation();
 
   return (
-    <View className="bg-[#fcfcfc] dark:bg-black w-full h-full">
+    <View className="bg-[#fcfcfc] dark:bg-[#10171d] w-full h-full">
       {/*Header Componenet */}
       <View className="p-10">
         <View className="pt-10 flex flex-row gap-4 items-center">
-          <View className="bg-gray-100 px-4 py-2 rounded-xl">
-            <Ionicons name="arrow-back" size={24} color="black" />
+          <View className="bg-gray-100 dark:bg-[#7601ff] px-4 py-2 rounded-xl">
+            <Ionicons
+              name="arrow-back"
+              size={24}
+              color={colorScheme === "light" ? "black" : "white"}
+            />
           </View>
           <Image
             className="w-8 h-8"
@@ -40,13 +44,13 @@ export default function Capacity() {
         </View>
       </View>
       {/*Select Spot */}
-      <View className="flex flex-col  items-center  w-full h-2/5 bg-gray-100">
+      <View className="flex flex-col  items-center  w-full h-2/5 bg-gray-100 dark:bg-[#47415d]">
         <View className="mt-5">
-          <Text className="text-2xl font-semibold text-center mb-6">
+          <Text className="text-2xl font-semibold text-center mb-6 dark:text-white">
             Select spot
           </Text>
           <ScrollView horizontal className="flex flex-row gap-5 pl-10">
-            <View className="bg-[#09e6b1] dark: bg-pink-600 py-6 h-56 rounded-3xl">
+            <View className="bg-[#09e6b1] dark:bg-pink-600 py-6 h-56 rounded-3xl">
               <Text className="text-white  text-center mb-2 font-bold">
                 TS-01
               </Text>
@@ -92,17 +96,26 @@ export default function Capacity() {
         </View> */}
         <View className="flex flex-col gap-4">
           <View className="border-2 border-gray-300  w-full marker:flex flex-row p-4 rounded-2xl">
-            <Text className="text-2xl text-gray-400" style={{ flexShrink: 1 }}>
+            <Text
+              className="text-2xl text-gray-400 dark:text-white"
+              style={{ flexShrink: 1 }}
+            >
               Final Capacity
             </Text>
-            <Text className="text-4xl font-semibold ml-auto"> 70 </Text>
+            <Text className="text-4xl font-semibold ml-auto dark:text-white">
+              {" "}
+              70{" "}
+            </Text>
           </View>
 
           <View className="border-2 border-gray-300   w-full flex flex-row p-4 rounded-2xl">
-            <Text className="text-2xl text-gray-400" style={{ flexShrink: 1 }}>
+            <Text
+              className="text-2xl text-gray-400 dark:text-white"
+              style={{ flexShrink: 1 }}
+            >
               Current Capacity
             </Text>
-            <Text className="text-4xl  text-gray-400 font-semibold ml-auto">
+            <Text className="text-4xl  text-gray-400  dark:text-white font-semibold ml-auto">
               {" "}
               32{" "}
             </Text>
@@ -111,29 +124,37 @@ export default function Capacity() {
           {/*Other details */}
           <View>
             <View className="flex flex-row">
-              <Text className="text-2xl font-semibold">Other details</Text>
-              <Text className="" onPress={toggleColorScheme}>
+              <Text className="text-2xl font-semibold dark:text-white">
+                Other details
+              </Text>
+              <Text className="dark:text-white" onPress={toggleColorScheme}>
                 Dark Mode
               </Text>
             </View>
             <View className="flex flex-row gap-4 mt-2">
               <View className="flex flex-col">
-                <Text className="text-gray-400 text-lg">Range</Text>
-                <Text className="text-black dark:text-white text-lg font-semibold">
+                <Text className="text-gray-400 dark:text-white text-lg">
+                  Range
+                </Text>
+                <Text className="text-black dark:text-white dark:text-white text-lg font-semibold">
                   {" "}
                   439 km
                 </Text>
               </View>
               <View className="flex flex-col">
-                <Text className="text-gray-400 text-lg">Charging Time</Text>
-                <Text className="text-black dark:text-white text-lg font-semibold">
+                <Text className="text-gray-400 text-lg dark:text-white">
+                  Charging Time
+                </Text>
+                <Text className="text-black dark:text-white  text-lg font-semibold">
                   {" "}
                   2h 58m
                 </Text>
               </View>
               <View>
-                <Text className="text-gray-400 text-lg">Price</Text>
-                <Text className="text-black dark:text-white text-lg font-semibold">
+                <Text className="text-gray-400 text-lg dark:text-white">
+                  Price
+                </Text>
+                <Text className="text-black dark:text-white dark:text-white text-lg font-semibold">
                   1.2
                 </Text>
               </View>

@@ -6,6 +6,7 @@ import { useColorScheme } from "nativewind";
 import Navbar from "./src/components/Navbar";
 import Maps from "./src/components/Maps";
 import Capacity from "./src/components/Capacity";
+import Payment from "./src/components/Payment";
 
 export function HomeScreen() {
   const { colorScheme, toggleColorScheme } = useColorScheme();
@@ -104,6 +105,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Maps" component={Maps} />
         <Stack.Screen name="Capacity" component={Capacity} />
+        <Stack.Screen name="Payment" component={Payment} />
       </Stack.Navigator>
     </NavigationContainer>
   );
