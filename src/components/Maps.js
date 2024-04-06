@@ -186,7 +186,7 @@ export default function Maps() {
                 Energy station details
               </Text>
               <Text
-                className=" text-black dark:text-white"
+                className="text-black dark:text-white"
                 onPress={toggleColorScheme}
               >
                 Dark Mode
