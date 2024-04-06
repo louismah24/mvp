@@ -13,11 +13,15 @@ import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import monochromeMapStyle from "../../monochrome-map-style";
 import { useNavigation } from "@react-navigation/native";
+import { useColorScheme } from "nativewind";
+import strangerThingsMapStyle from "../../stranger-things-map-style";
 
 // sample lat long for destination 1.3959774, 103.8887643
 // sample lat long for destination 1.396871, 103.9076603
 
 export default function Maps() {
+  const { colorScheme, toggleColorScheme } = useColorScheme();
+
   const navigation = useNavigation();
 
   const [location, setLocation] = useState(null);
@@ -89,7 +93,7 @@ export default function Maps() {
   }
 
   return (
-    <View className="bg-[#fcfcfc] w-full h-full">
+    <View className="bg-[#fcfcfc] dark:bg-black w-full h-full">
       <View className="h-3/5">
         <View className="flex flex-col">
           {text === "Waiting.." ? (
@@ -97,7 +101,11 @@ export default function Maps() {
           ) : (
             <MapView
               provider={PROVIDER_GOOGLE}
-              customMapStyle={monochromeMapStyle}
+              customMapStyle={
+                colorScheme === "light"
+                  ? monochromeMapStyle
+                  : strangerThingsMapStyle
+              }
               initialRegion={{
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
@@ -173,18 +181,26 @@ export default function Maps() {
             className="w-20 h-20"
           />
           <View className="flex flex-col">
-            <Text className="text-xl font-semibold">
-              Energy station details
-            </Text>
+            <View className="flex flex-row">
+              <Text className="text-xl dark:text-white font-semibold">
+                Energy station details
+              </Text>
+              <Text
+                className=" text-black dark:text-white"
+                onPress={toggleColorScheme}
+              >
+                Dark Mode
+              </Text>
+            </View>
             <View className="flex flex-row gap-2  mt-0.5">
               <Ionicons name="star" size={20} color="orange" />
               <Text className="text-sm text-gray-500">4.8 (172)</Text>
             </View>
             <View className="flex flex-row gap-2 mt-0.5">
-              <View className="bg-green-300 rounded-xl px-2">
+              <View className="bg-green-300 dark:bg-indigo-300 rounded-xl px-2">
                 <Text>2 / 8</Text>
               </View>
-              <Text className="text-sm text-green-600 font-semibold">
+              <Text className="text-sm text-green-600   dark:text-indigo-300 font-semibold">
                 Ports Available
               </Text>
             </View>
@@ -194,13 +210,17 @@ export default function Maps() {
         {/*Energy station Overview and Reviews */}
         <View className="mt-6">
           <View className="flex flex-row gap-2">
-            <Text className="text-lg font-semibold">Overview</Text>
-            <Text className="text-lg text-gray-400">Reviews</Text>
+            <Text className="text-lg font-semibold dark:text-white ">
+              Overview
+            </Text>
+            <Text className="text-lg text-gray-400 dark:text-white">
+              Reviews
+            </Text>
           </View>
           {/*Energy station address 1 */}
           <View className="flex flex-row gap-4 mt-0.5">
             <Ionicons name="location" size={20} color="black" />
-            <Text className="text-sm text-gray-400">
+            <Text className="text-sm text-gray-400 dark:text-white">
               Golden Lane, London EC1Y ORN, UK
             </Text>
           </View>
@@ -214,13 +234,13 @@ export default function Maps() {
         <View className="flex flex-row gap-4 mt-6">
           <Button
             title="Reserve Now"
-            className="flex flex-col bg-green-300 p-4 rounded-lg w-1/2"
+            className="flex flex-col bg-green-300 dark:bg-indigo-700 p-4 rounded-lg w-1/2"
             onPress={() => navigation.navigate("Capacity")}
           />
           {/* <Text className="text-white text-center font-semibold">
               Reserve Now
             </Text> */}
-          <View className="flex flex-col bg-blue-300 p-4 rounded-lg w-1/2">
+          <View className="flex flex-col bg-blue-300 dark:bg-indigo-700 p-4 rounded-lg w-1/2">
             <Text className="text-white text-center font-semibold">Go Now</Text>
           </View>
         </View>
