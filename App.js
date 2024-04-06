@@ -70,15 +70,15 @@ export function HomeScreen() {
       </View>
       {/* Charging port banner with text */}
       <View className="flex flex-row justify-center items-center mt-6 p-6">
-        <View className="flex flex-row bg-[#f2f2f2]  w-full h-auto p-6 rounded-2xl">
+        <View className="flex flex-row bg-[#f2f2f2] dark:bg-gray-500  w-full h-auto p-6 rounded-2xl">
           <View className="flex flex-col">
-            <Text className="text-[#919191] dark:text:white text-md mb-2">
+            <Text className="text-[#919191] dark:text-white dark:font-bold text-md mb-2">
               Charging port
             </Text>
-            <Text className="text-black dark:text:white text-2xl font-extrabold">
+            <Text className="text-black dark:text-white text-2xl font-extrabold">
               Type 1 - J1772{" "}
             </Text>
-            <Text className="text-black dark:text:white text-sm font-semibold">
+            <Text className="text-black dark:text-white text-sm font-semibold">
               AC N.America 19.2 kw
             </Text>
           </View>

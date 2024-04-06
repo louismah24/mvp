@@ -7,17 +7,18 @@ export default function Navbar({ theme }) {
   const navigation = useNavigation();
 
   return (
-    <View className="flex flex-row justify-between items-center mt-auto mb-6 p-5 mx-6 bg-[#1c2029] dark:bg-white rounded-3xl">
+    // bg-[#1c2029]
+    <View className="flex flex-row justify-between items-center mt-auto mb-6 p-5 mx-6 bg-gray-400 dark:bg-gray-300 rounded-3xl">
       <View className="flex flex-col">
         <Ionicons
-          name="settings-outline"
+          name="settings"
           size={32}
           color={theme === "light" ? "white" : "black"}
         />
       </View>
       <View className="flex flex-col">
         <Ionicons
-          name="map-outline"
+          name="map"
           size={32}
           color={theme === "light" ? "white" : "black"}
           onPress={() => navigation.navigate("Maps")}
@@ -33,7 +34,7 @@ export default function Navbar({ theme }) {
       </View>
       <View className="flex flex-col">
         <Ionicons
-          name="people-outline"
+          name="people"
           size={32}
           color={theme === "light" ? "white" : "black"}
           onPress={() => navigation.navigate("Profiles")}
