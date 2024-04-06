@@ -1,6 +1,7 @@
 import { Text, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Navbar from "./src/components/Navbar";
 
 export function HomeScreen() {
   return (
@@ -59,6 +60,7 @@ export function HomeScreen() {
         </View>
       </View>
       {/* Black Navbar with 3 icons */}
+      <Navbar />
     </View>
   );
 }
