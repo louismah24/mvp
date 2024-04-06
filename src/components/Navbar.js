@@ -7,36 +7,31 @@ export default function Navbar({ theme }) {
   const navigation = useNavigation();
 
   return (
-    // bg-[#1c2029]
-    <View className="flex flex-row justify-between items-center mt-auto mb-6 p-5 mx-6 bg-gray-400 dark:bg-gray-3'00 rounded-3xl">
+    <View className="flex flex-row justify-between items-center mt-auto mb-6 p-5 mx-6 bg-[#1c2029] dark:bg-white rounded-3xl">
       <View className="flex flex-col">
-        <Ionicons
-          name="settings"
-          size={32}
-          color={theme === "light" ? "white" : "black"}
-        />
+        <Ionicons name="settings-outline" size={32} color={"white"} />
       </View>
       <View className="flex flex-col">
         <Ionicons
-          name="map"
+          name="map-outline"
           size={32}
-          color={theme === "light" ? "white" : "black"}
+          color={"white"}
           onPress={() => navigation.navigate("Maps")}
         />
       </View>
       <View className="flex flex-col">
         <Ionicons
-          name="battery-charging"
+          name="battery-charging-outline"
           size={32}
-          color={theme === "light" ? "white" : "black"}
+          color={"white"}
           onPress={() => navigation.navigate("SmartAppliance")}
         />
       </View>
       <View className="flex flex-col">
         <Ionicons
-          name="people"
+          name="people-outline"
           size={32}
-          color={theme === "light" ? "white" : "black"}
+          color={"white"}
           onPress={() => navigation.navigate("Profiles")}
         />
       </View>
@@ -44,7 +39,7 @@ export default function Navbar({ theme }) {
         <Ionicons
           name="flower-outline"
           size={32}
-          color={theme === "light" ? "white" : "black"}
+          color={"white"}
           onPress={() => navigation.navigate("Chatbot")}
         />
       </View>

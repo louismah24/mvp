@@ -10,6 +10,8 @@ import Payment from "./src/components/Payment";
 import { SmartAppliance } from "./src/components/SmartAppliance";
 import { Profiles } from "./src/components/Profiles";
 import Chatbot from "./src/components/Chatbot";
+import AnomalyDetection from "./src/components/AnomalyDetection";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export function HomeScreen() {
   const { colorScheme, toggleColorScheme } = useColorScheme();
@@ -28,12 +30,14 @@ export function HomeScreen() {
               <Text className="text-black dark:text-white text-4xl font-semibold">
                 Model 3
               </Text>
-              <Text
-                onPress={toggleColorScheme}
-                className="text-black dark:text-white"
-              >
-                Dark Mode
-              </Text>
+              <View className="ml-56">
+                <Ionicons
+                  name="sunny-outline"
+                  size={32}
+                  color={colorScheme === "light" ? "black" : "white"}
+                  onPress={toggleColorScheme}
+                />
+              </View>
             </View>
             <Text className="text-[#919191] dark:text:white text-lg font-semibold">
               Tesla, 2018
@@ -112,6 +116,7 @@ export default function App() {
         <Stack.Screen name="SmartAppliance" component={SmartAppliance} />
         <Stack.Screen name="Profiles" component={Profiles} />
         <Stack.Screen name="Chatbot" component={Chatbot} />
+        <Stack.Screen name="Anomaly" component={AnomalyDetection} />
       </Stack.Navigator>
     </NavigationContainer>
   );

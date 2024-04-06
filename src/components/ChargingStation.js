@@ -46,7 +46,7 @@ export function ChargingStation({ colorScheme, newLocation }) {
           />
           <View className="flex flex-col">
             <Text className="text-xl dark:text-white font-semibold">
-              Energy station details
+              Energy station One
             </Text>
             <View className="flex flex-row gap-2  mt-0.5">
               <Ionicons name="star" size={20} color="orange" />
@@ -126,7 +126,7 @@ export function ChargingStation({ colorScheme, newLocation }) {
           />
           <View className="flex flex-col">
             <Text className="text-xl dark:text-white font-semibold">
-              Energy station details
+              Energy station Two
             </Text>
             <View className="flex flex-row gap-2  mt-0.5">
               <Ionicons name="star" size={20} color="orange" />

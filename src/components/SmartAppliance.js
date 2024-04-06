@@ -3,10 +3,13 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { styled, useColorScheme } from "nativewind";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import Navbar from "./Navbar";
 import DataPoints from "./DataPoints";
 
 export function SmartAppliance() {
+  const navigation = useNavigation();
+
   return (
     <View className=" h-full w-full bg-white dark:bg-[#10171d]">
       {/*Header */}
@@ -33,7 +36,7 @@ export function SmartAppliance() {
       {/* Appliances */}
       <View className="bg-gray-200 dark:bg-[#47415d]   w-full h-full mt-4 rounded-t-3xl">
         <View className="p-10">
-          <Text className="text-xl mb-4 text-white">Appliances</Text>
+          <Text className="text-xl mb-4 dark:text-white">Appliances</Text>
           <View className="flex flex-row px-4 gap-5">
             {/* Each Appliances */}
             {/* Appliance 1 */}
@@ -56,7 +59,10 @@ export function SmartAppliance() {
                 <Ionicons name="laptop-outline" size={24} color="white" />
               </View>
               <View className="flex flex-col items-center justify-center mt-2">
-                <Text className="watch-outline text-green-500  dark:text-white font-bold">
+                <Text
+                  className="watch-outline text-green-500  dark:text-white font-bold"
+                  onPress={() => navigation.navigate("Anomaly")}
+                >
                   Macbook
                 </Text>
               </View>

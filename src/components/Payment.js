@@ -44,7 +44,7 @@ export default function Payment() {
         </View>
         {/* Date and Time Component */}
         <View className="bg-gray-100 dark:bg-[#47415d] w-full h-44 pt-5">
-          <Text className="text-center text-xl text-white font-semibold">
+          <Text className="text-center text-xl text-black dark:text-white font-semibold">
             Auguest 2024
           </Text>
           <View>
@@ -83,7 +83,9 @@ export default function Payment() {
           </View>
         </View>
         <View className="flex flex-col items-center justify-center">
-          <Text className="pt-5 font-bold text-xl">Reservation Time</Text>
+          <Text className="pt-5 font-bold text-xl dark:text-white">
+            Reservation Time
+          </Text>
           <Text className="text-gray-500 mb-6 dark:text-white">
             Select the time for reservation
           </Text>
