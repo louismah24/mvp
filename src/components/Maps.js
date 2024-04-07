@@ -63,11 +63,9 @@ export default function Maps() {
     }
   };
 
-  const newLocation = (newLocation) => {
-    console.log("newLocation");
-    setToLocation(() => newLocation);
-    console.log("location", toLocation);
-    fetchRoute();
+  const newLocation = async (newLocation) => {
+    await setToLocation(() => newLocation);
+    await fetchRoute();
   };
 
   useEffect(() => {
@@ -79,24 +77,7 @@ export default function Maps() {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-      //   fetchRoute();
-      let newMarkers = [];
-
-      for (let i = 0; i < 10; i++) {
-        const nearbyCoordinates = utils.generateNearbyCoordinates(
-          destinationCoords,
-          8
-        ); // You can adjust the distance here
-        const marker = {
-          coordinate: nearbyCoordinates,
-          title: "Nearby Charging Station",
-          description: "Charging station available here",
-        };
-        newMarkers.push(marker); // Push the new marker to the new array
-
-        setMarkers(() => newMarkers);
-      }
+      setLocation(() => location);
     })();
   }, []);
 
